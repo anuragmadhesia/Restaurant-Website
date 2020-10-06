@@ -1,0 +1,110 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/css/home.css">
+    <script src="~/Content/js/aman.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <title>@ViewBag.Title</title>
+</head>
+<body onload="BtnDisable()">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand active" href="/Home/Index">
+            <img src="~/Content/img/2.png" class="img-responsive logo" alt="Responsive image">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="/Home/Index">HOME</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Home/Menu">MENU</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Home/Cart">MY CART</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Home/About">ABOUT</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Home/Contact">CONTACT</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Home/Reviews">REVIEWS</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Home/Gallery">GALLERY</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Home/Register">REGISTER</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Home/Booking">BOOKING</a></li>
+                <li class="nav-item"><a class="nav-link" href="@ViewBag.UserIndex">@ViewBag.UserPanel</a></li>
+            </ul>
+            <form class="form-inline">
+                <div class="col-md-12">
+                    <a href="/Home/Login" class="btn @ViewBag.logstyle">@ViewBag.log</a>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <div class="mainbody">
+        @RenderBody()
+    </div>
+
+    <!-- Footer -->
+    <section id="footer">
+        <div class="container">
+            <div class="row text-center text-xs-center text-sm-left text-md-left">
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <h5>Useful links</h5>
+                    <ul class="list-unstyled quick-links">
+                        <li><a href="/Home/Index"><i class="fa fa-angle-double-right"></i>Home Page</a></li>
+                        <li><a href="/Home/About"><i class="fa fa-angle-double-right"></i>About Page</a></li>
+                        <li><a href="/Home/Contact"><i class="fa fa-angle-double-right"></i>Contact Page</a></li>
+                        <li><a href="/Home/Review"><i class="fa fa-angle-double-right"></i>Reviews</a></li>
+                        <li><a href="/Home/Login"><i class="fa fa-angle-double-right"></i>Login Page</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <h5>Our Services</h5>
+                    <ul class="list-unstyled quick-links">
+                        <li><a href="/Home/Menu"><i class="fa fa-angle-double-right"></i>MENU</a></li>
+                        <li><a href="/Home/Booking"><i class="fa fa-angle-double-right"></i>Booking</a></li>
+                        <li><a href="/Home/Index"><i class="fa fa-angle-double-right"></i>Best Dishes</a></li>
+                        <li><a href="/Home/Index"><i class="fa fa-angle-double-right"></i>Professional Chefs</a></li>
+                        <li><a href="/Home/Index"><i class="fa fa-angle-double-right"></i>Quality Foods</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <h5>About US</h5>
+                    <ul class="list-unstyled quick-links">
+                        <li><a href="/Home/Index"><i class=""></i>CITY RESTAURANT</a></li>
+                        <li><a href="/Home/Index"><i class=""></i>Contact No. +91896574564</a></li>
+                        <li><a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=CllgCJZbjBPGrpDwdzBvFHxSMrrhTsPNtVQHHNWHcGzQXfdpDSXnGLtfpPXhhwfdmfZxVsFMcxq" target="_blank"><i class=""></i>Restaurant@gmail.com</a></li>
+                        <li><a href="/Home/Index"><i class=""></i>Aao Kabhi Haveli Pe</a></li>
+                        <li><a href="/Home/Index"><i class=""></i>UttarPradesh, INDIA</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+                    <ul class="list-unstyled list-inline social text-center">
+                        <li class="list-inline-item"><a href="https://www.facebook.com/Arcane-Programming-Infotech-Pvt-Ltd-111766697008658" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="https://mobile.twitter.com/er_datt" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="https://www.instagram.com/akrizvi110/?hl=en" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li class="list-inline-item"><a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=GTvVlcRwQnZxKMHcxPzTmRCHvNNVkmfzKXZFRBKQPLJjSnPlpNcjxMXjLNlmKvGDtXsNBFPLqfnWL" target="_blank"><i class="fa fa-envelope"></i></a></li>
+                    </ul>
+                </div>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+                    <p><u><a href="/Home/Index">City Restaurant.</a></u> is a Registered by Indian Quality Foods, Awards as best Restaurant of the Year & Best Services</p>
+                    <p class="h6">© All right Reversed. by<a class="text-green ml-2" href="https://www.instagram.com/anurag_madhesia/" target="_blank">Anurag Madhesia </a><span>with</span><a class="text-green ml-2" href="https://apinfotech.org/" target="_blank">A.P.I.</a></p>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </section>
+    <!-- ./Footer -->
+
+</body>
+</html>

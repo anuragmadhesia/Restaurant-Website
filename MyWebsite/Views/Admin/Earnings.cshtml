@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Earnings";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using System.Data;
+@using System.Data.SqlClient;
+@using MyWebsite.Models;
+<link href="~/Content/akash.css" rel="stylesheet" />
+<script src="~/Content/js/akash.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#example").DataTable();
+    })
+</script>
+<center><h1 style="color:darkblue">Sellings Records</h1></center>
+@{
+    string query = "select * from Tbl_orders";
+    ConnectionManager db = new ConnectionManager();
+    DataTable dt = db.DisplayAllData(query);
+    if (dt.Rows.Count > 0)
+    {
+        <center>
+            <table class="table table-striped" id="example">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">PUrchase ID</th>
+                        <th scope="col">Item Sold</th>
+                        <th scope="col">Total Price</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col">User Email</th>
+                        <th scope="col">User Contact</th>
+                        <th scope="col">User Address</th>
+                        <th scope="col">Payment Method</th>
+                        <th scope="col">Payment Date</th>
+                        <td scope="col">Remove Data</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        <tr>
+                            <td>@dt.Rows[i]["id"]</td>
+                            <td>@dt.Rows[i]["itemnames"]</td>
+                            <td>@dt.Rows[i]["totalprice"]&nbsp;&#8377;</td>
+                            <td>@dt.Rows[i]["username"]</td>
+                            <td>@dt.Rows[i]["useremail"]</td>
+                            <td>@dt.Rows[i]["usermobile"]</td>
+                            <td>@dt.Rows[i]["address"]</td>
+                            <td>@dt.Rows[i]["purchased"]</td>
+                            <td>@dt.Rows[i]["pdt"]</td>
+                            <td><a href="/Admin/Data_delete?del=@dt.Rows[i]["id"]"><center><span style="color:red;" class="fa fa-trash"></span></center></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </center>
+    }
+    else
+    {
+        <h3>No Record Available</h3>
+    }
+}

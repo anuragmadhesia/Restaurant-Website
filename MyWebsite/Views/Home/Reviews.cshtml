@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "Reviews";
+    Layout = "~/Views/Shared/GeneralLayout.cshtml";
+}
+
+<style>
+    .fa-star {
+        font-size: 40px;
+        color: blue;
+        padding-left: 4%;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $("#sp1").text(1); $("#sp2").text(2); $("#sp3").text(3); $("#sp4").text(4); $("#sp5").text(5);
+        $("#sp1,#sp2,#sp3,#sp4,#sp5").hide();
+        $("#s1").click(function () {
+            var v = $("#sp1").text();
+            $("#s1").css("color", "darkred");
+            $("#s2,#s3,#s4,#s5").css("color", "blue");
+            $("#txtrate").val(v);
+        })
+        $("#s2").click(function () {
+            var v = $("#sp2").text();
+            $("#s1,#s2").css("color", "darkred");
+            $("#s3,#s4,#s5").css("color", "blue");
+            $("#txtrate").val(v);
+        })
+        $("#s3").click(function () {
+            var v = $("#sp3").text();
+            $("#s1,#s2,#s3").css("color", "darkred");
+            $("#s4,#s5").css("color", "blue");
+            $("#txtrate").val(v);
+        })
+        $("#s4").click(function () {
+            var v = $("#sp4").text();
+            $("#s1,#s2,#s3,#s4").css("color", "darkred");
+            $("#s5").css("color", "blue");
+            $("#txtrate").val(v);
+        })
+        $("#s5").click(function () {
+            var v = $("#sp5").text();
+            $("#s1,#s2,#s3,#s4,#s5").css("color", "darkred");
+            $("#txtrate").val(v);
+        })
+    })
+</script>
+
+<div class="review-form">
+    <h2>Our Feedbacks</h2>
+    <hr />
+    <div class="col-sm-12">
+        <strong>Ali Fazal</strong><i class="fa" style="color:skyblue;">&nbsp;&nbsp;&#xf005;&nbsp;&#xf005;&nbsp;&#xf005;&nbsp;&#xf005;&nbsp;&#xf005;</i><br />
+        <i class="fa fa-quote-left">&nbsp;</i><span>Best Restaurant in our city. They are pretty good in all services.</span><i class="fa fa-quote-right"></i>
+        <hr />
+    </div>
+    <div class="col-sm-12">
+        <strong>Subhi Singh</strong><i class="fa" style="color: skyblue;">&nbsp;&nbsp;&#xf005;&nbsp;&#xf005;&nbsp;&#xf005;&nbsp;&#xf005;&nbsp;&#xf005;</i><br />
+        <i class="fa fa-quote-left">&nbsp;</i><span>Best Restaurant for couple and family. I love there foods, specially veg biryani.</span><i class="fa fa-quote-right"></i>
+        <hr />
+    </div>
+    <div class="col-sm-12">
+        <strong>Naman Ojha</strong><i class="fa" style="color: skyblue;">&nbsp;&nbsp;&#xf005;&nbsp;&#xf005;&nbsp;&#xf005;&nbsp;&#xf005;</i><br />
+        <i class="fa fa-quote-left">&nbsp;</i><span>My favorite restaurant in the city, There Services are very good then other restaurants</span><i class="fa fa-quote-right"></i>
+        <hr />
+    </div>
+    <div class="col-sm-12">
+        <strong>Rakesh Kumar</strong><i class="fa" style="color: skyblue;">&nbsp;&nbsp;&#xf005;&nbsp;&#xf005;&nbsp;&#xf005;</i><br />
+        <i class="fa fa-quote-left">&nbsp;</i><span>The food price is high as compare to food quality.</span><i class="fa fa-quote-right"></i>
+        <hr />
+    </div>
+    <div class="col-sm-12">
+        <strong>Nura Fatima</strong><i class="fa" style="color: skyblue;">&nbsp;&nbsp;&#xf005;&nbsp;&#xf005;&nbsp;&#xf005;&nbsp;&#xf005;</i><br />
+        <i class="fa fa-quote-left">&nbsp;</i><span>They are good at services but they charge too much</span><i class="fa fa-quote-right"></i>
+        <hr />
+    </div>
+</div>
+
+<div class="feedback-form" style="font-family:'Bell MT';color:#fff;">
+    <form action="/Home/Reviews" method="post" enctype="multipart/form-data">
+        <h2 class="text-center">Give Your Own Feedback</h2>
+        <div class="form-group">
+            <input type="text" name="txtname" class="form-control" placeholder="Enter Your Name" required="required" onkeypress="return checkChar(event)">
+        </div>
+        <div class="form-group">
+            <input type="email" name="txtemail" class="form-control" placeholder="Enter Your Email" required="required" id="IdMail" onkeypress="EmailValid()">
+            <br /><center><span id="ShowEmailMsg"></span></center>
+        </div>
+        <div class="form-group">
+            Rating
+            <br />
+            <span class="fa fa-star" id="s1"></span>
+            <span class="fa fa-star" id="s2"></span>
+            <span class="fa fa-star" id="s3"></span>
+            <span class="fa fa-star" id="s4"></span>
+            <span class="fa fa-star" id="s5"></span>
+            <span class="fa fa-star" id="sp1"></span>
+            <span class="fa fa-star" id="sp2"></span>
+            <span class="fa fa-star" id="sp3"></span>
+            <span class="fa fa-star" id="sp4"></span>
+            <span class="fa fa-star" id="sp5"></span>
+            <br />
+            <input type="hidden" name="txtrate" id="txtrate" />
+        </div>
+        <div class="form-group">
+            <textarea name="txtfeedback" class="form-control" placeholder="Write Your Feedback Here..." rows="3" required="required" onkeypress="return checkChar(event)"></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">SEND</button>
+        </div>
+    </form>
+
+</div>

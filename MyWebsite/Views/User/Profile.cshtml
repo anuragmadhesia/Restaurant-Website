@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+@using System.Data;
+@using System.Data.SqlClient;
+@using MyWebsite.Models;
+@{
+    string id = Session["uid"] + "";
+    string query = "select * from Tbl_Registration where email='" + id + "'";
+    ConnectionManager db = new ConnectionManager();
+    DataTable dt = db.DisplayAllData(query);
+    if (dt.Rows.Count > 0)
+    {
+        
+
+<div class="container" style="margin-top : 80px;margin-bottom:30px;font-family: 'Bell MT'; font-size: 20px;">
+    <form>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        Your name
+                        <input type="text" class="form-control" value="@dt.Rows[0]["name"]" id="txtname" onkeypress="return checkChar(event)" />
+                   </div>
+                    <div class="col-md-6 mb-3">
+                        Date of birth
+                        <input type="date" class="form-control" value="@dt.Rows[0]["dob"]" id="txtdob"/>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        Email
+                        <input type="email" class="form-control" value="@dt.Rows[0]["email"]" id="txtemail"/>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        Mobile
+                        <input type="text" maxlength="10" class="form-control" value="@dt.Rows[0]["mobile"]" id="txtmobile" onkeypress="return checkNum(event)" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-5 mb-3">
+                        City
+                        <input type="text" class="form-control" value="@dt.Rows[0]["city"]" id="txtcity" onkeypress="return checkChar(event)" />
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        State
+                        <input type="text" class="form-control" value="@dt.Rows[0]["state"]" id="txtstate" onkeypress="return checkChar(event)" />
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        Pincode
+                        <input type="text" class="form-control" value="@dt.Rows[0]["pincode"]" id="txtpincode" onkeypress="return checkNum(event)" />
+                    </div>
+                </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <input type="button" class="btn btn-danger" value="Edit Profile" />
+                <input type="button" class="btn btn-info" value="Update Profile" />
+            </div>
+            <div class="col-md-6 mb-3">
+                <span id="lbl"></span>
+            </div>
+        </div>
+                
+        
+    </form>
+</div>
+    
+    }
+}
+
+<script>
+    $(document).ready(function () {
+        $(".form-control").attr("ReadOnly", true);
+        $(".btn-info").hide();
+        $(".btn-danger").click(function () {
+            $(".btn-info").show();
+            $(".btn-danger").hide();
+            $(".form-control").attr("ReadOnly", false);
+            $("#txtemail").attr("ReadOnly", true);
+        });
+        $(".btn-info").click(function () {
+            var name = $("#txtname").val();
+            var dob = $("#txtdob").val();
+            var email = $("#txtemail").val();
+            var mobile = $("#txtmobile").val();
+            var city = $("#txtcity").val();
+            var state = $("#txtstate").val();
+            var pincode = $("#txtpincode").val();
+            $.ajax({
+                type: "Post",
+                url: "/User/profile",
+                data: { Name: name, Dob: dob, Email: email, Mobile: mobile, City: city, state: state, Pincode: pincode },
+                success: function (data) {
+                    $("#lbl").html(data).fadeIn(3000).fadeOut(8000);
+                    $(".btn-info").hide();
+                    $(".btn-danger").show();
+                    $(".form-control").attr("ReadOnly", true);
+                }
+            })
+        })
+    });
+</script>

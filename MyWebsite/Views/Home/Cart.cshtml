@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/GeneralLayout.cshtml";
+}
+@{
+string s,t,icode="",iname="";
+int i, a,iprice=0;
+string id = Session["uid"] + "";
+<center>
+    <h2 style="color:#00ffff">Cart</h2>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col"><center>Item Photo</center></th>
+                <th scope="col">Item CODE</th>
+                <th scope="col">Item Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Remove</th>
+            </tr>
+        </thead>
+        <tbody style="color:#fff;">
+            @if (Request.Cookies["aa"] != null)
+            {
+                s = Convert.ToString(Request.Cookies["aa"].Value);
+                string[] strArr = s.Split('|');
+                for (i = 0; i < strArr.Length; i++)
+                {
+                   
+                    t = Convert.ToString(strArr[i].ToString());
+                    string[] strArr1 = t.Split(',');
+                    <tr>
+                        <td>
+                            <center>
+                            <img src="~/Content/image/@strArr1[5].ToString()" style="height:100px;width:100px;" /><br />Item Quatity.<br />
+                            <div class="input-group" style="width:100px;">
+                                <input type="text" class="form-control" value="@strArr1[4].ToString()" readonly/>
+                            </div>
+                            </center>
+                        </td>
+                        <th scope="row">@strArr1[0].ToString()</th>
+                        <td>@strArr1[1].ToString()</td>
+                        <td>@strArr1[2].ToString()</td>
+                        <td>@strArr1[3].ToString()&nbsp;&#8377;</td>
+                        <td><a href="/Home/Cart_Edit?ed=@strArr1[0].ToString()"><span class="fa fa-edit" style="font-size: 25px"></span></a></td>
+                        <td><a href="/Home/Cart_delete?del=@strArr1[0].ToString()"><span class="fa fa-trash" style="font-size: 25px;color:darkred;"></span></a></td>
+                    </tr>
+                    a = Convert.ToInt32(@strArr1[4].ToString());
+                    if (i == 0)
+                    {
+                        icode = @strArr1[0].ToString();
+                        iname = @strArr1[1].ToString();
+                        iprice = Convert.ToInt32(strArr1[3].ToString())*a;
+                    }
+                    else
+                    {
+                        icode = icode.ToString() + "," + @strArr1[0].ToString();
+                        iname = iname.ToString() +","+ @strArr1[1].ToString();
+                        iprice = iprice + Convert.ToInt32(strArr1[3].ToString())*a;
+                    }    
+                }
+            }
+        </tbody>
+    </table>
+        <h3 style="position:absolute;top:0;right:0;color:goldenrod;">@iprice&nbsp;&#8377;&nbsp;&nbsp;</h3>
+            <a href="/Home/Cart_deleteAll"><span class="btn btn-outline-danger" style="position: absolute; top: 4px; left: 10px;">CLEAR CART</span></a>
+            @if (id != null && id != "")
+            {
+                if (Request.Cookies["aa"] != null)
+                {
+                    Session["icode"] = icode;         
+                    Session["iname"] = iname;
+                    Session["iprice"] = iprice;
+                   <a href="/Home/Purchase"><input type="button" class="btn btn-success" style="margin-bottom:30px;" value="Purchase Items"></a>
+                }
+                else
+                {
+                    <h1 style="position:absolute;top:50%;right:40%;color:goldenrod;">Cart Is Empty!</h1>
+                }
+            }
+            else
+            {
+                <a href="/Home/Login"><input type="button" class="btn btn-success" style="margin-bottom:30px;" value="Login To Purchase"></a>
+            }
+</center>
+}
+

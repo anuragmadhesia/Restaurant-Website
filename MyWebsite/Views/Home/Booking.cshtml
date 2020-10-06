@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Booking";
+    Layout = "~/Views/Shared/GeneralLayout.cshtml";
+}
+
+<div class="booking-form" style="color:#fff;font-family:'Bell MT';">
+    <form action="/Home/Booking" method="post" enctype="multipart/form-data">
+        <h2 class="text-center" style="color:greenyellow;">Book Table Here</h2>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Your Name" name="txtname" required="required" onkeypress="return checkChar(event)">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" maxlength="10" placeholder="Mobile Number" name="txtmobile" required="required" onkeypress="return checkNum(event)">
+        </div>  
+        <div class="form-group">
+            <input type="email" class="form-control" placeholder="Your Email" name="txtemail" required="required" id="IdMail" onkeypress="EmailValid()">
+            <center><span id="ShowEmailMsg"></span></center>
+        </div>      
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                Date for Table Booking
+                <input type="date" name="txtdate" class="form-control" required="required">
+            </div>
+            <div class="col-md-6 mb-3">
+                Time for Table Booking
+                <input type="time" name="txttime" class="form-control" required="required">
+            </div>
+        </div>
+        <div class="form-group">
+            <select class="custom-select mr-sm-2" name="ddltabletype" required="required">
+                <option selected>Table Type</option>
+                <option value="Single Chair">Single Chair</option>
+                <option value="Family Table">Family Table</option>
+                <option value="Couple Table">Couple Table</option>
+                <option value="Party Table">Party Table</option>
+                <option value="Meeting Table">Meeting Table</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select class="custom-select mr-sm-2" name="ddlpreference" required="required">
+                <option selected>Food Preference</option>
+                <option value="Non Veg">Non Veg</option>
+                <option value="Veg">Veg</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                Captcha Code
+                <input type="text" name="txtcaptha" readonly value="@ViewBag.cph" class="form-control" style="color: orangered; font-family: 'Roboto', sans-serif;">
+            </div>
+            <div class="col-md-6 mb-3">
+                Enter Captha Code
+                <input type="text" name="txtinputcaptha" class="form-control" required="required">
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>

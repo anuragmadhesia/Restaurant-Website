@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Menu";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@using System.Data;
+@using System.Data.SqlClient;
+@using MyWebsite.Models;
+<link href="~/Content/akash.css" rel="stylesheet" />
+<script src="~/Content/js/akash.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#example").DataTable();
+    })
+</script>
+<center><h1 style="color:darkblue">Restaurant Menu Items</h1></center>
+@{
+    string query = "select * from Tbl_menu";
+    ConnectionManager db = new ConnectionManager();
+    DataTable dt = db.DisplayAllData(query);
+    if (dt.Rows.Count > 0)
+    {
+        <center>
+            <table class="table" id="example">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Item Id</th>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Item Description</th>
+                        <th scope="col">Item Price</th>
+                        <td scope="col">Item Photo</td>
+                        <th scope="col">Delete</th>
+                        <th scope="col">Update</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        <tr>
+                            <td>@dt.Rows[i]["iid"]</td>
+                            <td>@dt.Rows[i]["iname"]</td>
+                            <td>@dt.Rows[i]["idesc"]</td>
+                            <td>@dt.Rows[i]["iprice"]</td>
+                            <td><img src="~/Content/image/@dt.Rows[i]["ipic"]" style="height:50px;width:50px;"/></td>
+                            <td><a href="/Admin/Menu_delete?del=@dt.Rows[i]["iid"]"><center><span style="color:red;" class="fa fa-trash"></span></center></a></td>
+                            <td><a href="/Admin/Menu_update?up=@dt.Rows[i]["iid"]"><span class="fa fa-edit"></span></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </center>
+    }
+    else
+    {
+        <h3>No Record Available</h3>
+    }
+    <a href="/Admin/Menu_add">ADD ITEMS IN MENU</a>
+}

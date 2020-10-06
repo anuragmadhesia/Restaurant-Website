@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Booking";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@using System.Data;
+@using System.Data.SqlClient;
+@using MyWebsite.Models;
+<link href="~/Content/akash.css" rel="stylesheet" />
+<script src="~/Content/js/akash.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#example").DataTable();
+    })
+</script>
+<center><h1 style="color: darkblue;">Booking details</h1></center>
+@{
+    string query = "select * from Tbl_bookings";
+    ConnectionManager db = new ConnectionManager();
+    DataTable dt = db.DisplayAllData(query);
+    if (dt.Rows.Count > 0)
+    {
+        <center>
+            <table class="table" id="example">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID No.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Mobile</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Table Type</th>
+                        <th scope="col">Preference</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        <tr>
+                            <td scope="row">@dt.Rows[i]["bno"]</td>
+                            <td>@dt.Rows[i]["name"]</td>
+                            <td>@dt.Rows[i]["mobile"]</td>
+                            <td>@dt.Rows[i]["email"]</td>
+                            <td>@dt.Rows[i]["date"]</td>
+                            <td>@dt.Rows[i]["time"]</td>
+                            <td>@dt.Rows[i]["tabletype"]</td>
+                            <td>@dt.Rows[i]["preference"]</td>
+                            <td><a href="/Admin/Booking_delete?del=@dt.Rows[i]["bno"]"><center><span style="color:red;" class="fa fa-trash"></span></center></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </center>
+    }
+    else
+    {
+        <h3>No Record Available</h3>
+    }
+    }

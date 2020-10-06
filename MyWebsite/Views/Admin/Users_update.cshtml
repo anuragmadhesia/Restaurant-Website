@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Users_update";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container" style="margin-top : 80px;margin-bottom:30px;font-family: 'Bell MT'; font-size: 20px;">
+    <h1 style="text-align:center;">@ViewBag.name Details To Edit</h1>
+    <form action="/Admin/Users_update" method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                Name<input type="text" class="form-control" value="@ViewBag.name" name="txtname" onkeypress="return checkChar(event)" />
+            </div>
+            <div class="col-md-6 mb-3">
+                Date of birth<input type="date" class="form-control" value="@ViewBag.dob" name="txtdob" />
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                Email<input type="email" class="form-control" value="@ViewBag.email" name="txtemail" readonly />
+            </div>
+            <div class="col-md-6 mb-3">
+                Mobile<input type="text" class="form-control" value="@ViewBag.mobile" name="txtmobile" onkeypress="return checkNum(event)" />
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-5 mb-3">
+                City<input type="text" class="form-control" value="@ViewBag.city" name="txtcity" onkeypress="return checkChar(event)" />
+            </div>
+            <div class="col-md-4 mb-3">
+                State<input type="text" class="form-control" value="@ViewBag.state" name="txtstate" onkeypress="return checkChar(event)" />
+            </div>
+            <div class="col-md-3 mb-3">
+                Pincode<input type="text" class="form-control" value="@ViewBag.pincode" name="txtpincode" onkeypress="return checkNum(event)" />
+            </div>
+        </div>
+        <a href="/Admin/Users"><input type="button" class="btn btn-info" value="<< Back" /></a>
+        <input type="submit" class="btn btn-success" value="Update" />
+    </form>
+</div>
+

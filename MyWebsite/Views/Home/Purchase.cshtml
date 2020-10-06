@@ -1,0 +1,63 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Content/js/aman.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Purchase</title>
+    <style>
+        body{
+            margin:0;
+            padding:0;
+            background-color:lightgray;
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <br />
+    <h2>Purchase Items</h2>
+        <div style="width:300px;color:green;">
+            <form action="/Home/Purchase" method="post" enctype="multipart/form-data">
+                <input type="hidden" value="@ViewBag.icode" name="txticode" >
+                <input type="hidden" value="@ViewBag.iname" name="txtiname" >
+                <input type="hidden" value="@ViewBag.iprice" name="txtprice">
+                <div class="form-group">
+                    Your User Name
+                    <input type="text" class="form-control" name="txtuname" value="@ViewBag.uname" onkeypress="return checkChar(event)" />
+                </div>
+                <div class="form-group">
+                    Your Email Address
+                    <input type="text" class="form-control" value="@ViewBag.uemail" name="txtuemail" readonly />
+                </div>
+                <div class="form-group">
+                    Your Mobile Number
+                    <input type="text" class="form-control" name="txtmobile" value="@ViewBag.umobile" maxlength="10" onkeypress="return checkNum(event)" />
+                </div>
+                <div class="form-group">
+                    Your Delivery Address
+                    <textarea name="txtaddress" class="form-control" rows="3">@ViewBag.address</textarea>
+                </div>
+                <div class="form-group">
+                    Total Purchase Cost
+                    <input type="text" class="form-control" value="@ViewBag.iprice&nbsp;&#8377;" readonly />
+                </div>
+                <div class="form-group">
+                    <select class="custom-select mr-sm-2" name="ddlpmethod" required="required">
+                        <option selected value="Cash On Delivery">Cash On Delivery</option>
+                        <option value="UPI">UPI</option>
+                        <option value="Net Banking">Net Banking</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Purchase</button>
+                </div>
+           </form>
+       </div>
+    </center>
+</body>
+</html>
+    -->

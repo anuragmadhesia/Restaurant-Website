@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Feedback";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+@using System.Data;
+@using System.Data.SqlClient;
+@using MyWebsite.Models;
+<center>
+    <h1>Your Feedback Records</h1>
+</center>
+@{
+    string id = Session["uid"] + "";
+    string query = "select * from Tbl_feedbacks where email='" + id + "'";
+    ConnectionManager db = new ConnectionManager();
+    DataTable dt = db.DisplayAllData(query);
+    if (dt.Rows.Count > 0)
+    {
+<center>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Feedback</th>
+                <th scope="col">Date and Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+    <tr>
+        <th scope="row">@(i+1)</th>
+        <td>@dt.Rows[i]["rating"]<span>&nbsp;Stars</span></td>
+        <td>@dt.Rows[i]["feedback"]</td>
+        <td>@dt.Rows[i]["Fdt"]</td>
+    </tr>
+                    }
+      
+
+        </tbody>
+    </table>
+</center>
+    }
+        else
+    {
+        <center>
+    <h1 style="margin-top:140px;color:orangered;">No Feedbacks Records Found</h1>
+</center>
+    }
+}

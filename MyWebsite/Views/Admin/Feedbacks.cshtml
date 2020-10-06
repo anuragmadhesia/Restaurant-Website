@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Feedbacks";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@using System.Data;
+@using System.Data.SqlClient;
+@using MyWebsite.Models;
+<link href="~/Content/akash.css" rel="stylesheet" />
+<script src="~/Content/js/akash.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#example").DataTable();
+    })
+</script>
+<center><h1 style="color:darkblue">User Feedbacks</h1></center>
+@{
+    string query = "select * from Tbl_feedbacks";
+    ConnectionManager db = new ConnectionManager();
+    DataTable dt = db.DisplayAllData(query);
+    if (dt.Rows.Count > 0)
+    {
+        <center>
+            <table class="table" id="example">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID No.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Rating</th>
+                        <th scope="col">Feedback</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Delete</th>
+                        <td scope="col">Update</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        <tr>
+                            <td>@dt.Rows[i]["fno"]</td>
+                            <td>@dt.Rows[i]["name"]</td>
+                            <td>@dt.Rows[i]["email"]</td>
+                            <td>@dt.Rows[i]["rating"]</td>
+                            <td>@dt.Rows[i]["feedback"]</td>
+                            <td>@dt.Rows[i]["fdt"]</td>
+                            <td><a href="/Admin/Feedback_delete?del=@dt.Rows[i]["fno"]"><center><span style="color:red;" class="fa fa-trash"></span></center></a></td>
+                            <td><a href="/Admin/Feedback_update?up=@dt.Rows[i]["fno"]"><span class="fa fa-edit"></span></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </center>
+    }
+    else
+    {
+        <h3>No Record Available</h3>
+    }
+}

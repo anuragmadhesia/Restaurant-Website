@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Cart_Edit";
+    Layout = "~/Views/Shared/GeneralLayout.cshtml";
+}
+<center style="color:#fff;">
+    <br /><br />
+    <h2>Cart Item Edit</h2><br /><br />
+    <img src="~/Content/image/@ViewBag.ipic" style="height: 250px; width: 250px; float: left; margin-left: 30%; border: 1px solid black; " /><br />
+    <form action ="/Home/Cart_Edit" method="post" enctype="multipart/form-data">
+        <div style="width: 250px; float: left; margin-left: 19px; ">
+            <div class="form-group">
+                Item Name.
+                <input type="text" class="form-control" value="@ViewBag.iname" readonly />
+            </div>
+            <div class="form-group">
+                Enter Quatity.
+                <input type="text" class="form-control" value="@ViewBag.iqty" name="txtiqty" />
+            </div>
+                <input type="hidden" class="form-control" value="@ViewBag.icode" name="txticode" readonly />
+            <div class="form-group">
+                Item Price.
+                <input type="text" class="form-control" value="@ViewBag.iprice" readonly /><br />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </div>
+        </form>
+</center>

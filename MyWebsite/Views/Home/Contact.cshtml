@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/GeneralLayout.cshtml";
+}
+<div class="login-form" style="font-family:'Bell MT';color:#fff;">
+    <form action="/Home/Contact" method="post" enctype="multipart/form-data">
+        <h2 class=" text-center" style="color:greenyellow;">
+            CONTACT US
+        </h2>
+        <div class="form-group">
+            <input type="text" name="txtname" class="form-control" placeholder="Your Name" required="required" onkeypress="return checkChar(event)">
+        </div>
+        <div class="form-group">
+            <input type="email" name="txtemail" class="form-control" placeholder="Your Email" required="required" id="IdMail" onkeyup="EmailValid()"><br /><center><span id="ShowEmailMsg"></span></center>
+        </div>
+        <div class="form-group">
+            <textarea name="txtmsg" class="form-control" placeholder="Write Your Message Here..." rows="3" required="required" onkeypress="return checkChar(event)"></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">SEND</button>
+        </div>
+    </form>
+
+</div>

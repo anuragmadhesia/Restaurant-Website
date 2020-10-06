@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/css/adminsidebar.css">
+    <link rel="stylesheet" href="~/Content/css/admin.css">
+    <script src="~/Content/js/aman.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <title>@ViewBag.Title</title>
+</head>
+<body onload="BtnDisable()">
+    <input type="checkbox" id="check">
+    <label for="check">
+        <i class="fas fa-bars" id="btn"></i>
+        <i class="fas fa-times" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+        <header><a style="color:greenyellow;margin-right:19px;" href="/Admin/Index">Admin Panel</a></header>
+        <ul>
+            <li><a href="/Admin/Earnings"><i class="fas fa-calendar"></i>Earnings</a></li>
+            <li><a href="/Admin/Menu"><i class="fas fa-stream"></i>Menu List</a></li>
+            <li><a href="/Admin/Booking"><i class="fas fa-calendar-week"></i>Bookings</a></li>
+            <li><a href="/Admin/Users"><i class="fa fa-users"></i>Users</a></li>
+            <li><a href="/Admin/Feedbacks"><i class="fas fa-sliders-h"></i>Feedbacks</a></li>
+            <li><a href="/Admin/Contacts"><i class="far fa-envelope"></i>Contacts</a></li>
+            <li><a href="/Admin/ChangePassword"><i class="fa fa-key"></i>Password</a></li>
+            <li><a href="/Admin/Logout" class="btn btn-outline-danger btn-lg">Log Out</a></li>
+        </ul>
+    </div>
+    <section>
+        <div class="admin_header">
+        </div>
+        <div class="mainbody">
+            @RenderBody()
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© All right Reversed. by Anurag Madhesia</p>
+        </div>
+        <!-- ./Footer -->
+    </section>
+</body>
+</html>

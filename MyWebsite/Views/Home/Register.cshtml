@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/GeneralLayout.cshtml";
+}
+
+<div class="register-form" style="color:yellowgreen">
+    <form action="/Home/Register" method="post" enctype="multipart/form-data">
+        <h2 class="text-center" style="color:greenyellow;">Register Here</h2>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                Your name
+                <input type="text" name="txtname" class="form-control" placeholder="Your name" required="required" onkeypress="return checkChar(event)">
+            </div>
+            <div class="col-md-6 mb-3">
+                Date of Birth
+                <input type="date" name="txtdob" class="form-control" placeholder="Date of birth" required="required">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <span id="ShowEmailMsg">Enter Email</span>
+                <input type="email" name="txtemail" class="form-control" placeholder="Enter Email" required="required" id="IdMail" onkeypress="EmailValid()">
+            </div>
+            <div class="col-md-6 mb-3">
+                <span id="ShowMobileMsg">Mobile Number</span>
+                <input type="text" name="txtmobile" maxlength="10" class="form-control" placeholder="Mobile Number" required="required" id="IdMobile" onkeypress="return checkNum(event),mobValid()">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-5 mb-3">
+                City
+                <input type="text" name="txtcity" class="form-control" placeholder="City" required="required" onkeypress="return checkChar(event)">
+            </div>
+            <div class="col-md-4 mb-3">
+                State
+                <input type="text" name="txtstate" class="form-control" placeholder="State" required="required" onkeypress="return checkChar(event)">
+            </div>
+            <div class="col-md-3 mb-3">
+                Pincode
+                <input type="text" name="txtpincode" class="form-control" placeholder="Pincode" required="required" onkeypress="return checkNum(event)">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <span id="ShowMsgPassword">Enter password</span><br />
+                <div class="input-group">
+                    <input type="password" name="txteppassword" id="idPassword" placeholder="Enter Password" class="form-control" onkeyup="PassValid()" />
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="button" id="passswd" onclick="BtnShow()" style="background-color: #c1e3e0;">
+                            <i class="fa fa-eye" style="font-size: 20px;" id="idBtnOpen"></i>
+                            <i class="fa fa-eye-slash" style="font-size: 20px;" id="idBtnClose"></i>
+                        </button>
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    Confirm Password
+                    <input type="password" name="txtcppassword" class="form-control" placeholder="Confirm Password" data-toggle="tooltip" data-placement="right" title="Remember Your Password" required="required">
+                </div>
+            </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                Captcha Code
+                <input type="text" name="txtcaptha" readonly value="@ViewBag.cph" class="form-control" style="color:orangered;">
+            </div>
+            <div class="col-md-6 mb-3">
+                Enter Captcha
+                <input type="text" name="txtinputcaptha" class="form-control" placeholder="Enter Captha" required="required">
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+</div>

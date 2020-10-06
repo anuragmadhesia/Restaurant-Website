@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/GeneralLayout.cshtml";
+}
+
+<div class="login-form" style="color:#fff">
+    <form action="/Home/Login" method="post" enctype="multipart/form-data">
+        <h2 class="text-center" style="color:greenyellow;">Log in</h2>
+        <div class="form-group">
+            <input type="email" class="form-control" placeholder="Email" required="required" name="txtuserid">
+        </div>
+        <div class="input-group">
+            <input type="password" name="txtpassword" id="idPassword" placeholder="Password" class="form-control" />
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="button" id="passswd" onclick="BtnShow()" style="background-color: #c1e3e0;">
+                    <i class="fa fa-eye" style="font-size: 20px;" id="idBtnOpen"></i>
+                    <i class="fa fa-eye-slash" style="font-size: 20px;" id="idBtnClose"></i>
+                </button>
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </div>
+        <div class="clearfix">
+            <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
+            <a href="#" class="pull-right">Forgot Password?</a>
+        </div>
+        <p class="text-center"><a href="/Home/Register">Create an User Account</a></p>
+    </form>    
+</div>

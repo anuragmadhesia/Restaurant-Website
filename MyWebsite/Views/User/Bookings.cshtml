@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Bookings";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+@using System.Data;
+@using System.Data.SqlClient;
+@using MyWebsite.Models;
+
+<center>
+    <h1>Your Bookings Records</h1>
+</center>
+    @{
+    string id = Session["uid"] + "";
+    string query = "select * from Tbl_bookings where email='" + id + "'";
+    ConnectionManager db = new ConnectionManager();
+    DataTable dt = db.DisplayAllData(query);
+    if (dt.Rows.Count > 0)
+    {
+        <center>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Table Type</th>
+                        <th scope="col">Food Preference</th>
+                        <th scope="col">Booking Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        <tr>
+                            <th scope="row">@(i+1)</th>
+                            <td>@dt.Rows[i]["date"]</td>
+                            <td>@dt.Rows[i]["time"]</td>
+                            <td>@dt.Rows[i]["tabletype"]</td>
+                            <td>@dt.Rows[i]["preference"]</td>
+                            <td>@dt.Rows[i]["Bdt"]</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </center>
+    }
+    else
+    {
+        <center>
+            <h1 style ="margin-top:140px;color:orangered;">No Bookings Records Found</h1>
+</center>
+    }
+}
+

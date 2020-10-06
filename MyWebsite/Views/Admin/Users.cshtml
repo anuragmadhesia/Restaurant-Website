@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@using System.Data;
+@using System.Data.SqlClient;
+@using MyWebsite.Models;
+<link href="~/Content/akash.css" rel="stylesheet" />
+<script src="~/Content/js/akash.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#example").DataTable();
+    })
+</script>
+<center><h1 style="color:darkblue">User details</h1></center>
+@{
+    string query = "select * from Tbl_Registration";
+    ConnectionManager db = new ConnectionManager();
+    DataTable dt = db.DisplayAllData(query);
+    if (dt.Rows.Count > 0)
+    {
+        <center>
+            <table class="table" id="example">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Date of Birth</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Mobile</th>
+                        <th scope="col">City</th>
+                        <th scope="col">State</th>
+                        <th scope="col">Pincode</th>
+                        <th scope="col">Delete</th>
+                        <td scope="col">Update</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        <tr>
+                            <td>@dt.Rows[i]["name"]</td>
+                            <td>@dt.Rows[i]["dob"]</td>
+                            <td>@dt.Rows[i]["email"]</td>
+                            <td>@dt.Rows[i]["mobile"]</td>
+                            <td>@dt.Rows[i]["city"]</td>
+                            <td>@dt.Rows[i]["state"]</td>
+                            <td>@dt.Rows[i]["pincode"]</td>
+                            <td><a href="/Admin/Users_delete?del=@dt.Rows[i]["email"]"><center><span style="color:red;" class="fa fa-trash"></span></center></a></td>
+                            <td><a href="/Admin/Users_update?up=@dt.Rows[i]["email"]"><span class="fa fa-edit"></span></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </center>
+    }
+    else
+    {
+        <h3>No Record Available</h3>
+    }
+}
