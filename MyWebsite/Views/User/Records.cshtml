@@ -21,7 +21,7 @@
                     <tr>
                         <th scope="col">Purchase Id.</th>
                         <th scope="col">Item Purchased</th>
-                        <th scope="col">Price Payed</th>
+                        <th scope="col">Price Paid</th>
                         <th scope="col">Payment Method</th>
                         <th scope="col">Date and Time</th>
                     </tr>
@@ -32,7 +32,7 @@
                         <tr>
                             <th scope="row">@dt.Rows[i]["id"]</th>
                             <td>@dt.Rows[i]["itemnames"]</td>
-                            <td>@dt.Rows[i]["totalprice"]</td>
+                            <td>@dt.Rows[i]["totalprice"]&nbsp;&#8377;</td>
                             <td>@dt.Rows[i]["purchased"]</td>
                             <td>@dt.Rows[i]["pdt"]</td>
                         </tr>
