@@ -168,7 +168,7 @@ section .section-title {
 
 /*login page*/
 .login-form {
-		width: 340px;
+		max-width: 340px;
     	margin: 50px auto;
 	}
     .login-form form {
@@ -187,7 +187,7 @@ section .section-title {
 
 /*register page*/
 .register-form{
-		width: 500px;
+		max-width: 500px;
     	margin: 50px auto;
 	}
 .register-form form {
@@ -206,7 +206,7 @@ section .section-title {
 
 /*booking page*/
 .booking-form{
-		width: 500px;
+		max-width: 500px;
     	margin: 50px auto;
 	}
 .booking-form form {
